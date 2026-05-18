@@ -1115,21 +1115,8 @@ footer {
   .cp-phone-notch-bar { width: 48px; }
   .cp-phone-glow { width: 80px; }
 
-  /* Scene 2: big phone email */
-  .cp-phone-big { width: 185px; height: 290px; border-radius: 28px; padding: 8px 7px; transform: none; }
-  .cp-pb-notch { height: 5px; width: 55px; }
-  .cp-pb-header { padding: 7px 9px; }
-  .cp-pb-from { font-size: 8px; margin-bottom: 1px; }
-  .cp-pb-subj { font-size: 9px; margin-bottom: 3px; }
-  .cp-pb-body { padding: 6px; gap: 4px; }
-  .cp-stat-row { grid-template-columns: 1fr 1fr; gap: 3px; }
-  .cp-stat-mini { padding: 5px 6px; }
-  .cp-sm-num { font-size: 15px; }
-  .cp-sm-lbl { font-size: 7px; }
-  .cp-rv-row { padding: 4px 6px; gap: 4px; }
-  .cp-rv-stars { font-size: 8px; }
-  .cp-rv-text { font-size: 8px; }
-  .cp-rv-loc { font-size: 7px; }
+  /* Scene 2: big phone email — fit inside the stack */
+  .cp-phone-big-wrap { transform: scale(0.62); transform-origin: top center; margin-bottom: -140px; }
   .cp-chips-row { display: none; }
 
   /* Scene 3: alert */
@@ -1285,7 +1272,7 @@ footer {
   h1 { font-size: 27px; }
   .hero-sub { font-size: 14px; }
   .cp-stack { height: auto; min-height: 320px; }
-  .cp-phone-big { width: 165px; height: 270px; }
+  .cp-phone-big-wrap { transform: scale(0.55); margin-bottom: -160px; }
   .cp-phone-main { width: 128px; height: 260px; }
   .cp-reply-wrap, .cp-alert-wrap, .cp-email-wrap { width: calc(100vw - 24px); }
   .dash-stats { grid-template-columns: repeat(3,1fr); gap: 5px; }
