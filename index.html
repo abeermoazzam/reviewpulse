@@ -34,7 +34,7 @@
   --radius: 16px;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overscroll-behavior: none; }
 
 body {
   background: var(--bg);
@@ -43,7 +43,18 @@ body {
   font-weight: 400;
   line-height: 1.6;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* iOS momentum scrolling */
+@supports (-webkit-overflow-scrolling: touch) {
+  html { -webkit-overflow-scrolling: touch; }
+}
+
+/* ── TOUCH & SCROLL FIXES ── */
+* { -webkit-tap-highlight-color: transparent; }
+button, a { touch-action: manipulation; }
 
 /* ── NAV ── */
 nav {
@@ -294,6 +305,7 @@ h1 em {
 .step-visual {
   margin-top: 18px; background: var(--white); border: 1px solid var(--border);
   border-radius: 13px; padding: 18px 22px; max-width: 480px; font-size: 13px;
+  overflow: hidden; box-sizing: border-box; width: 100%;
 }
 
 /* ── FEATURES ── */
@@ -409,6 +421,7 @@ h1 em {
   border-radius: 10px; padding: 13px 16px; font-size: 15px;
   font-family: var(--sans); font-weight: 500; color: rgba(240,237,232,0.9);
   transition: border-color 0.15s, background 0.15s; outline: none; width: 100%;
+  -webkit-appearance: none;
 }
 .lead-input::placeholder { color: rgba(240,237,232,0.22); }
 .lead-input:focus { border-color: var(--violet); background: rgba(107,63,224,0.07); }
@@ -418,17 +431,10 @@ h1 em {
 .lead-error { font-size: 12px; color: #e07070; font-weight: 500; display: none; }
 .lead-error.show { display: block; }
 .lead-submit-btn { width: 100%; margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 10px; }
-.lead-spinner {
-  width: 18px; height: 18px; border: 2.5px solid rgba(255,255,255,0.3);
-  border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite;
-}
+.lead-spinner { width: 18px; height: 18px; border: 2.5px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .lead-success { text-align: center; padding: 32px 0; animation: fadeUp 0.4s ease both; }
-.lead-success-icon {
-  width: 56px; height: 56px; background: rgba(26,200,100,0.15);
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  font-size: 22px; color: #6ee0a0; margin: 0 auto 18px; border: 1.5px solid rgba(26,200,100,0.25);
-}
+.lead-success-icon { width: 56px; height: 56px; background: rgba(26,200,100,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; color: #6ee0a0; margin: 0 auto 18px; border: 1.5px solid rgba(26,200,100,0.25); }
 .lead-success-title { font-size: 22px; font-weight: 800; color: rgba(240,237,232,0.9); margin-bottom: 10px; letter-spacing: -0.02em; }
 .lead-success-sub { font-size: 15px; color: rgba(240,237,232,0.45); line-height: 1.6; max-width: 380px; margin: 0 auto; }
 
@@ -467,6 +473,7 @@ footer {
   position: relative;
   width: 100%;
   height: 560px;
+  overflow: hidden;
 }
 .cp-scene {
   position: absolute;
@@ -478,6 +485,7 @@ footer {
   transform: translateY(16px);
   transition: opacity 0.65s ease, transform 0.65s ease;
   pointer-events: none;
+  min-height: 360px;
 }
 .cp-scene.active {
   opacity: 1;
@@ -1028,7 +1036,7 @@ footer {
 
   /* Cinema */
   .cinema-wrap { padding-bottom: 52px; }
-  .cp-stack { height: 480px; }
+  .cp-stack { height: 480px; overflow: hidden; }
   .cp-phone-big { transform: none; }
   .cp-email-wrap { width: min(500px, calc(100vw - 40px)); }
   .cp-alert-wrap { width: min(400px, calc(100vw - 40px)); }
@@ -1082,7 +1090,7 @@ footer {
   .mobile-menu { top: 52px; }
 
   /* Hero — tighter, no overflow */
-  .hero { padding: 60px 16px 32px; gap: 0; }
+  .hero { padding: 56px 16px 24px; gap: 0; }
   .hero-left { margin-bottom: 32px; }
   h1 { font-size: clamp(28px, 8vw, 38px); line-height: 1.1; margin-bottom: 14px; }
   .hero-sub { font-size: 15px; line-height: 1.6; margin-bottom: 20px; }
@@ -1093,7 +1101,7 @@ footer {
 
   /* Cinema panel — compact & contained */
   .cinema-wrap { padding-bottom: 56px; }
-  .cp-stack { height: 380px; }
+  .cp-stack { height: auto; min-height: 360px; }
   .cp-dots { bottom: -30px; }
   .cp-label { bottom: -50px; font-size: 10px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
 
@@ -1163,9 +1171,10 @@ footer {
     font-size: 13px; padding: 6px 12px;
     border-right: none;
     border-bottom: 1px solid var(--border);
+    width: 100%; text-align: center;
   }
   .ind-item:last-child { border-bottom: none; }
-  .industries-row { flex-direction: column; align-items: center; gap: 0; }
+  .industries-row { flex-direction: column; align-items: stretch; gap: 0; width: 100%; }
 
   /* Scale callout */
   .scale-callout { padding: 40px 16px; }
@@ -1252,6 +1261,8 @@ footer {
   .footer-cta p { font-size: 14px; margin-bottom: 28px; line-height: 1.6; }
   .footer-btn { width: 100%; padding: 15px 20px; font-size: 15px; border-radius: 8px; }
   .footer-note { font-size: 12px; margin-top: 16px; }
+  .lead-input { font-size: 16px; } /* prevent iOS auto-zoom */
+  .lead-field-row { flex-direction: column; }
 
   /* Footer */
   footer { padding: 18px 16px; gap: 6px; font-size: 11px; }
@@ -1263,7 +1274,7 @@ footer {
 @media (max-width: 380px) {
   h1 { font-size: 27px; }
   .hero-sub { font-size: 14px; }
-  .cp-stack { height: 360px; }
+  .cp-stack { height: auto; min-height: 320px; }
   .cp-phone-big { width: 180px; height: 340px; }
   .cp-phone-main { width: 128px; height: 260px; }
   .cp-reply-wrap, .cp-alert-wrap, .cp-email-wrap { width: calc(100vw - 24px); }
@@ -1272,6 +1283,7 @@ footer {
   .scale-num { font-size: 38px; }
   .btn-main, .btn-outline { font-size: 14px; }
   .lead-field-row { flex-direction: column; }
+  .lead-input { font-size: 16px; } /* prevent iOS zoom */
 }
 </style>
 </head>
@@ -1307,7 +1319,7 @@ footer {
 </div>
 
 <!-- HERO -->
-<section style="background:var(--bg);overflow:clip;">
+<section style="background:var(--bg);overflow:hidden;">
 <div class="hero">
   <div class="hero-left">
     <h1>Hundreds of reviews.<br>One team can't<br>read them <em>all.</em></h1>
@@ -1617,7 +1629,7 @@ footer {
       <div class="step-right">
         <div class="step-title">Your dashboard goes live — instantly</div>
         <div class="step-desc">From day one, your entire review history is analysed, categorised, and searchable. See which issues are appearing most across which locations. Compare this month to last year. Drill into any branch, any time period, any topic.</div>
-        <div class="step-visual" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:8px">
+        <div class="step-visual" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:100%;overflow:hidden">
           <div style="background:var(--bg);border-radius:9px;padding:11px;text-align:center">
             <div style="font-size:9px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:5px">This month</div>
             <div style="font-size:22px;font-weight:800;color:var(--gold);letter-spacing:-0.03em">4.1 ★</div>
@@ -1823,7 +1835,6 @@ footer {
   <h2>Give ReviewPulse a try<br>for <em>your business.</em></h2>
   <p>Connect your locations, see your full review history analysed, and get your first weekly report — completely free to start. No contracts, no commitment.</p>
 
-  <!-- ── LEAD FORM ── -->
   <div class="lead-form-wrap" id="leadFormWrap">
     <div class="lead-form-inner" id="leadFormInner">
       <div class="lead-field-row">
@@ -1841,15 +1852,12 @@ footer {
         <input class="lead-input" id="leadEmail" type="email" placeholder="sarah@albiz.ae" autocomplete="email" required>
         <span class="lead-error" id="leadEmailErr">Please enter a valid email address.</span>
       </div>
-
       <button class="footer-btn lead-submit-btn" id="leadSubmitBtn" onclick="submitLead()">
         <span id="leadBtnText">Try it free for your business →</span>
         <span id="leadBtnSpinner" class="lead-spinner" style="display:none"></span>
       </button>
       <div class="footer-note" style="margin-top:16px">Free trial · Monthly subscription · No contracts · Cancel anytime</div>
     </div>
-
-    <!-- Success state -->
     <div class="lead-success" id="leadSuccess" style="display:none">
       <div class="lead-success-icon">✓</div>
       <div class="lead-success-title">Thanks! We'll be in touch soon.</div>
@@ -1860,9 +1868,9 @@ footer {
 
 <footer>
   <div style="font-family:var(--sans);font-weight:800;font-size:14px;letter-spacing:-0.02em">ReviewPulse</div>
+  <div>AI-powered review intelligence for enterprise businesses</div>
+  <div>Early access — DM on LinkedIn to get started</div>
 </footer>
-
-
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
@@ -1873,36 +1881,29 @@ const EMAILJS_PUBLIC_KEY  = 'aqL26KGX58YLaxmt5';
 emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
 async function submitLead() {
-  const nameEl    = document.getElementById('leadName');
-  const bizEl     = document.getElementById('leadBiz');
-  const emailEl   = document.getElementById('leadEmail');
-  const errEl     = document.getElementById('leadEmailErr');
-  const btnText   = document.getElementById('leadBtnText');
-  const spinner   = document.getElementById('leadBtnSpinner');
-  const btn       = document.getElementById('leadSubmitBtn');
-
-  // Validate email
+  const nameEl  = document.getElementById('leadName');
+  const bizEl   = document.getElementById('leadBiz');
+  const emailEl = document.getElementById('leadEmail');
+  const errEl   = document.getElementById('leadEmailErr');
+  const btnText = document.getElementById('leadBtnText');
+  const spinner = document.getElementById('leadBtnSpinner');
+  const btn     = document.getElementById('leadSubmitBtn');
   const emailVal = emailEl.value.trim();
   const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
   emailEl.classList.toggle('invalid', !validEmail);
   errEl.classList.toggle('show', !validEmail);
   if (!validEmail) { emailEl.focus(); return; }
-
-  // Loading state
   btn.disabled = true;
   btnText.style.display = 'none';
   spinner.style.display = 'inline-block';
-
   const params = {
     from_name:  nameEl.value.trim() || 'Not provided',
     from_email: emailVal,
     business:   bizEl.value.trim()  || 'Not provided',
     reply_to:   emailVal,
   };
-
   try {
     await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
-    // Show success
     document.getElementById('leadFormInner').style.display = 'none';
     const successEl = document.getElementById('leadSuccess');
     successEl.style.display = 'block';
@@ -1912,7 +1913,7 @@ async function submitLead() {
     btn.disabled = false;
     btnText.style.display = 'inline';
     spinner.style.display = 'none';
-    alert('Something went wrong. Please try again or reach out directly on LinkedIn.');
+    alert('Something went wrong. Please try again.');
   }
 }
 
