@@ -1,0 +1,2018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReviewPulse — Enterprise Review Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  --bg: #f0ede8;
+  --bg2: #e8e4de;
+  --white: #ffffff;
+  --ink: #1a1814;
+  --ink2: #4a4640;
+  --ink3: #8a8278;
+  --violet: #6b3fe0;
+  --violet-hover: #5530b8;
+  --violet-pale: #f3eeff;
+  --gold: #c9922a;
+  --gold-light: #f0d9a8;
+  --gold-pale: #faf5e8;
+  --green: #1a6644;
+  --green-light: #d4f0e0;
+  --red: #991f23;
+  --red-light: #fde8e8;
+  --amber: #b5541a;
+  --border: rgba(26,24,20,0.09);
+  --border2: rgba(26,24,20,0.05);
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'Manrope', sans-serif;
+  --radius: 16px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  height: 64px;
+  background: rgba(240,237,232,0.92);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+.logo {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--ink);
+  display: flex; align-items: center; gap: 9px;
+  letter-spacing: -0.02em;
+}
+.logo-mark {
+  width: 32px; height: 32px;
+  background: var(--ink);
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.logo-mark svg { width: 16px; height: 16px; fill: var(--bg); }
+
+.nav-links { display:flex;align-items:center;gap:36px;font-size:14px;font-weight:500;color:var(--ink2) }
+.nav-links a { text-decoration:none;color:inherit;transition:color 0.15s;letter-spacing:-0.01em }
+.nav-links a:hover { color:var(--ink) }
+
+.nav-right { display:flex;align-items:center;gap:20px; }
+.nav-text-link { font-size:14px;font-weight:500;color:var(--ink2);text-decoration:none;transition:color 0.15s; }
+.nav-text-link:hover { color:var(--ink); }
+.nav-cta {
+  background: var(--violet); color: white; border:none;
+  border-radius: 8px; padding: 10px 22px; font-size: 14px;
+  font-family: var(--sans); font-weight: 600; cursor: pointer;
+  transition: all 0.15s; letter-spacing: -0.01em;
+}
+.nav-cta:hover { background: var(--violet-hover); transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 80px 48px 60px;
+  max-width: 1280px; margin: 0 auto;
+  gap: 0;
+}
+.hero-left { flex: 0 0 50%; padding-right: 48px; }
+.hero-right { flex: 1; min-width: 0; }
+
+h1 {
+  font-family: var(--sans);
+  font-size: clamp(48px, 5.5vw, 76px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  animation: fadeUp 0.5s ease both;
+  color: var(--ink);
+}
+h1 em {
+  font-style: italic;
+  font-family: var(--serif);
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.hero-sub {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--ink2);
+  line-height: 1.65;
+  max-width: 480px;
+  margin-bottom: 40px;
+  animation: fadeUp 0.5s 0.08s ease both;
+  letter-spacing: -0.01em;
+}
+
+.hero-actions {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  animation: fadeUp 0.5s 0.16s ease both;
+  margin-bottom: 40px;
+}
+.btn-main {
+  background: var(--violet); color: white; border: none;
+  border-radius: 8px; padding: 16px 32px; font-size: 15px;
+  font-family: var(--sans); font-weight: 600; cursor: pointer;
+  transition: all 0.15s; letter-spacing: -0.01em;
+}
+.btn-main:hover { background: var(--violet-hover); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(107,63,224,0.25); }
+.btn-outline {
+  background: transparent; color: var(--ink); border: 1.5px solid rgba(26,24,20,0.18);
+  border-radius: 8px; padding: 15px 28px; font-size: 15px;
+  font-family: var(--sans); font-weight: 500; cursor: pointer;
+  transition: all 0.15s; letter-spacing: -0.01em;
+}
+.btn-outline:hover { border-color: var(--ink); background: rgba(26,24,20,0.04); }
+
+.hero-trust {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 13px; color: var(--ink3); font-weight: 500;
+  animation: fadeUp 0.5s 0.24s ease both;
+}
+.trust-sep { width: 3px; height: 3px; border-radius: 50%; background: var(--ink3); }
+
+/* ── HERO VISUAL ── */
+.hero-right { animation: fadeUp 0.6s 0.1s ease both; }
+
+.dashboard-card {
+  background: var(--white);
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: 0 32px 96px rgba(26,24,20,0.10), 0 2px 8px rgba(26,24,20,0.06);
+}
+.dash-header {
+  background: var(--ink); padding: 16px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.dash-title { color: rgba(240,237,232,0.9); font-size: 13px; font-weight: 600; display:flex;align-items:center;gap:10px; letter-spacing:-0.01em; }
+.live-pill {
+  background: rgba(26,200,100,0.18); color: #6ee0a0;
+  font-size: 10px; font-weight: 600; padding: 3px 10px;
+  border-radius: 100px; display:flex;align-items:center;gap:5px;
+  letter-spacing: 0.04em;
+}
+.live-dot { width:5px;height:5px;border-radius:50%;background:#6ee0a0;animation:blink 1.5s infinite }
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:0.3} }
+.dash-week { color: rgba(240,237,232,0.3); font-size: 11px; }
+.dash-body { padding: 22px; }
+.dash-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
+.dash-stat { background: var(--bg); border-radius: 11px; padding: 13px 15px; }
+.ds-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.09em; font-weight: 600; color: var(--ink3); margin-bottom: 5px; }
+.ds-val { font-family: var(--sans); font-size: 26px; font-weight: 700; color: var(--ink); line-height: 1; letter-spacing: -0.03em; }
+.ds-delta { font-size: 10px; margin-top: 4px; font-weight: 500; }
+.dash-section-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.09em; font-weight: 600; color: var(--ink3); margin-bottom: 10px; }
+.complaint-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border2); }
+.complaint-row:last-child { border: none; }
+.c-bar-wrap { flex: 1; height: 5px; background: var(--bg); border-radius: 3px; overflow: hidden; }
+.c-bar { height: 100%; border-radius: 3px; }
+.c-label { font-size: 12px; color: var(--ink2); flex: 0 0 140px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500; }
+.c-count { font-size: 10px; color: var(--ink3); min-width: 30px; text-align: right; font-weight: 600; }
+.dash-email-row {
+  margin-top: 16px; background: var(--violet-pale);
+  border: 1px solid rgba(107,63,224,0.15); border-radius: 10px;
+  padding: 12px 15px; display: flex; align-items: center; gap: 10px;
+  font-size: 12px; color: var(--violet); font-weight: 500;
+}
+
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(20px); }
+  to { opacity:1; transform: translateY(0); }
+}
+
+/* ── INDUSTRIES ── */
+.industries-strip {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 48px;
+  text-align: center;
+  background: var(--bg2);
+}
+.industries-label { font-size: 11px; font-weight: 600; color: var(--ink3); letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 18px; }
+.industries-row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; }
+.ind-item {
+  font-family: var(--sans); font-size: 14px; font-weight: 600; color: var(--ink2);
+  padding: 6px 28px; border-right: 1px solid var(--border); letter-spacing: -0.01em;
+}
+.ind-item:last-child { border-right: none; }
+
+/* ── SCALE CALLOUT ── */
+.scale-callout {
+  background: var(--ink); color: var(--bg);
+  padding: 72px 48px;
+}
+.scale-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px; background: rgba(255,255,255,0.07);
+  border-radius: 18px; overflow: hidden;
+}
+.scale-item {
+  background: rgba(255,255,255,0.02); padding: 44px 40px; text-align: center;
+}
+.scale-num {
+  font-family: var(--sans); font-size: 56px; font-weight: 800;
+  font-style: italic; color: rgba(240,237,232,0.9);
+  line-height: 1; margin-bottom: 12px; letter-spacing: -0.04em;
+}
+.scale-label { font-size: 14px; color: rgba(240,237,232,0.4); line-height: 1.6; font-weight: 400; }
+
+/* ── SECTIONS ── */
+.section { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
+.section-tag {
+  display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--ink3);
+  margin-bottom: 20px;
+}
+.section-h {
+  font-family: var(--sans); font-size: clamp(36px, 4.5vw, 58px);
+  font-weight: 800; line-height: 1.08; margin-bottom: 18px;
+  letter-spacing: -0.03em;
+}
+.section-h em { font-family: var(--serif); font-weight: 400; font-style: italic; }
+.section-sub { font-size: 17px; color: var(--ink2); max-width: 560px; margin-bottom: 64px; line-height: 1.7; font-weight: 400; }
+
+/* ── PROBLEM / PAIN ── */
+.pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.pain-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 36px; position: relative; overflow: hidden;
+}
+.pain-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: #f5c0c0;
+}
+.pain-card.solution::before { background: #b8e8cc; }
+.pain-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px; font-weight: 700; }
+.pain-card .pain-label { color: var(--red); }
+.pain-card.solution .pain-label { color: var(--green); }
+.pain-title { font-family: var(--sans); font-size: 22px; font-weight: 700; margin-bottom: 14px; line-height: 1.25; letter-spacing: -0.02em; }
+.pain-desc { font-size: 14px; color: var(--ink2); line-height: 1.7; }
+.pain-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 18px; }
+.pain-list li { font-size: 14px; color: var(--ink2); display: flex; align-items: flex-start; gap: 10px; line-height: 1.55; }
+.pain-list li .pi { flex-shrink: 0; margin-top: 1px; font-weight: 600; }
+
+/* ── STEPS ── */
+.steps { display: flex; flex-direction: column; gap: 0; }
+.step { display: grid; grid-template-columns: 80px 1fr; gap: 0 36px; position: relative; padding-bottom: 60px; }
+.step:last-child { padding-bottom: 0; }
+.step-left { display: flex; flex-direction: column; align-items: center; }
+.step-num {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--ink); color: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--sans); font-size: 18px; font-weight: 700;
+  flex-shrink: 0; letter-spacing: -0.02em;
+}
+.step-line { width: 1px; flex: 1; background: var(--border); margin-top: 12px; min-height: 40px; }
+.step:last-child .step-line { display: none; }
+.step-right { padding-top: 11px; }
+.step-title { font-size: 20px; font-weight: 700; margin-bottom: 10px; color: var(--ink); letter-spacing: -0.02em; }
+.step-desc { font-size: 15px; color: var(--ink2); line-height: 1.7; max-width: 520px; }
+.step-visual {
+  margin-top: 18px; background: var(--white); border: 1px solid var(--border);
+  border-radius: 13px; padding: 18px 22px; max-width: 480px; font-size: 13px;
+}
+
+/* ── FEATURES ── */
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; }
+.feature-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 30px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.feature-card:hover { transform: translateY(-3px); box-shadow: 0 14px 44px rgba(26,24,20,0.08); }
+.feature-icon {
+  width: 44px; height: 44px; border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 18px; background: var(--bg);
+}
+.feature-title { font-size: 16px; font-weight: 700; margin-bottom: 9px; letter-spacing: -0.02em; }
+.feature-desc { font-size: 14px; color: var(--ink2); line-height: 1.65; }
+
+/* ── DASHBOARD SECTION ── */
+.dashboard-section { background: var(--ink); color: var(--bg); padding: 100px 48px; }
+.dashboard-inner { max-width: 1200px; margin: 0 auto; }
+.dashboard-section .section-tag { color: rgba(240,237,232,0.35); }
+.dashboard-section .section-h { color: var(--bg); }
+.dashboard-section .section-sub { color: rgba(240,237,232,0.5); }
+.dash-preview {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px; overflow: hidden; margin-top: 52px;
+}
+.dash-preview-header {
+  background: rgba(255,255,255,0.05); padding: 14px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; gap: 12px;
+}
+.dot3 { display:flex;gap:6px }
+.dot3 span { width:10px;height:10px;border-radius:50% }
+.dash-preview-body { padding: 28px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 800px) { .dash-preview-body { grid-template-columns: 1fr; } }
+.dp-card { background: rgba(255,255,255,0.05); border-radius: 13px; padding: 20px; }
+.dp-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; color: rgba(240,237,232,0.35); margin-bottom: 10px; }
+.dp-val { font-family: var(--sans); font-size: 32px; font-weight: 800; margin-bottom: 4px; letter-spacing: -0.03em; }
+.dp-sub { font-size: 12px; color: rgba(240,237,232,0.35); }
+.complaint-list-dark { margin-top: 12px; }
+.cld-item { display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:12px;font-weight:500 }
+.cld-item:last-child{border:none}
+.cld-text{color:rgba(240,237,232,0.65);flex:1}
+.cld-badge{font-size:10px;padding:3px 9px;border-radius:100px;margin-left:12px;white-space:nowrap;font-weight:600}
+.badge-red{background:rgba(155,34,38,0.28);color:#ffaaaa}
+.badge-amber{background:rgba(181,84,26,0.28);color:#ffc97a}
+.badge-green{background:rgba(26,102,68,0.3);color:#88e0a0}
+.reply-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 9px; padding: 13px; font-size: 12px; color: rgba(240,237,232,0.55); line-height: 1.65; font-style: italic; }
+.reply-btn-row { display:flex;gap:8px;margin-top:10px }
+.rb { font-size:11px;font-weight:600;padding:6px 16px;border-radius:7px;border:none;cursor:pointer;font-family:var(--sans) }
+.rb-send{background:var(--violet);color:white}
+.rb-edit{background:rgba(255,255,255,0.07);color:rgba(240,237,232,0.55)}
+
+/* ── SUBSCRIPTION CALLOUT ── */
+.sub-callout {
+  background: var(--violet-pale); border: 1px solid rgba(107,63,224,0.15);
+  border-radius: var(--radius); padding: 40px 44px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 36px; flex-wrap: wrap; margin-top: 72px;
+}
+.sub-callout-text h3 { font-family: var(--sans); font-size: 28px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.03em; }
+.sub-callout-text p { font-size: 14px; color: var(--ink2); max-width: 440px; line-height: 1.6; }
+.sub-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+.sub-pill { background: white; border: 1px solid rgba(107,63,224,0.2); border-radius: 100px; padding: 6px 18px; font-size: 13px; color: var(--violet); font-weight: 500; }
+
+/* ── FAQ ── */
+.faq-list { display: flex; flex-direction: column; gap: 0; max-width: 720px; }
+.faq-item { border-bottom: 1px solid var(--border); }
+.faq-q {
+  width: 100%; background: none; border: none; cursor: pointer;
+  text-align: left; padding: 24px 0; font-size: 16px; font-weight: 600;
+  color: var(--ink); font-family: var(--sans); letter-spacing: -0.01em;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+}
+.faq-icon { font-size: 22px; color: var(--ink3); transition: transform 0.3s; flex-shrink: 0; font-weight: 300; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+.faq-a-inner { padding: 0 0 22px; font-size: 15px; color: var(--ink2); line-height: 1.7; }
+.faq-item.open .faq-a { max-height: 260px; }
+
+/* ── FOOTER CTA ── */
+.footer-cta {
+  background: var(--ink); text-align: center; padding: 120px 48px; color: var(--bg);
+}
+.footer-cta h2 {
+  font-family: var(--sans); font-size: clamp(40px, 5.5vw, 72px);
+  font-weight: 800; margin-bottom: 22px; line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+.footer-cta h2 em { font-family: var(--serif); font-weight: 400; font-style: italic; color: rgba(240,237,232,0.6); }
+.footer-cta p { font-size: 18px; color: rgba(240,237,232,0.45); margin-bottom: 44px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.65; }
+.footer-btn {
+  background: var(--violet); color: white; border: none;
+  border-radius: 9px; padding: 18px 48px; font-size: 16px;
+  font-family: var(--sans); font-weight: 700; cursor: pointer;
+  transition: all 0.15s; letter-spacing: -0.01em;
+}
+.footer-btn:hover { background: var(--violet-hover); transform: translateY(-2px); box-shadow: 0 10px 36px rgba(107,63,224,0.35); }
+.footer-note { margin-top: 22px; font-size: 13px; color: rgba(240,237,232,0.25); font-weight: 500; }
+
+/* ── LEAD FORM ── */
+.lead-form-wrap { max-width: 540px; margin: 0 auto; text-align: left; }
+.lead-form-inner { display: flex; flex-direction: column; gap: 16px; }
+.lead-field-row { display: flex; gap: 14px; }
+.lead-field-row .lead-field { flex: 1; }
+.lead-field { display: flex; flex-direction: column; gap: 6px; position: relative; }
+.lead-label { font-size: 12px; font-weight: 600; color: rgba(240,237,232,0.45); letter-spacing: 0.04em; text-transform: uppercase; }
+.lead-req { color: var(--violet); }
+.lead-input {
+  background: rgba(240,237,232,0.07); border: 1.5px solid rgba(240,237,232,0.12);
+  border-radius: 10px; padding: 13px 16px; font-size: 15px;
+  font-family: var(--sans); font-weight: 500; color: rgba(240,237,232,0.9);
+  transition: border-color 0.15s, background 0.15s; outline: none; width: 100%;
+}
+.lead-input::placeholder { color: rgba(240,237,232,0.22); }
+.lead-input:focus { border-color: var(--violet); background: rgba(107,63,224,0.07); }
+.lead-input.invalid { border-color: #e05555; }
+.lead-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(240,237,232,0.35)' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; cursor: pointer; }
+.lead-select option { background: #1a1814; color: #f0ede8; }
+.lead-error { font-size: 12px; color: #e07070; font-weight: 500; display: none; }
+.lead-error.show { display: block; }
+.lead-submit-btn { width: 100%; margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.lead-spinner {
+  width: 18px; height: 18px; border: 2.5px solid rgba(255,255,255,0.3);
+  border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.lead-success { text-align: center; padding: 32px 0; animation: fadeUp 0.4s ease both; }
+.lead-success-icon {
+  width: 56px; height: 56px; background: rgba(26,200,100,0.15);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 22px; color: #6ee0a0; margin: 0 auto 18px; border: 1.5px solid rgba(26,200,100,0.25);
+}
+.lead-success-title { font-size: 22px; font-weight: 800; color: rgba(240,237,232,0.9); margin-bottom: 10px; letter-spacing: -0.02em; }
+.lead-success-sub { font-size: 15px; color: rgba(240,237,232,0.45); line-height: 1.6; max-width: 380px; margin: 0 auto; }
+
+footer {
+  background: #111; padding: 24px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 12px; color: rgba(240,237,232,0.25);
+  flex-wrap: wrap; gap: 12px; font-weight: 500;
+}
+
+/* ════════════════════════════════
+   CINEMA PANEL — hero right side
+   ════════════════════════════════ */
+
+/* Dark vars scoped to cinema */
+.cinema-wrap {
+  --c-surface: #0d0f1a;
+  --c-surface2: #13151f;
+  --c-surface3: #1a1d2e;
+  --c-border: #1e2234;
+  --c-border2: #2d3048;
+  --c-text: #ffffff;
+  --c-text-muted: rgba(255,255,255,0.45);
+  --c-text-dim: rgba(255,255,255,0.25);
+  --c-indigo: #6366f1;
+  --c-indigo-dim: rgba(99,102,241,0.15);
+  --c-indigo-border: rgba(99,102,241,0.3);
+  --c-green: #34d399;
+  --c-red: #f87171;
+  --c-amber: #fbbf24;
+  position: relative;
+  width: 100%;
+  padding-bottom: 60px;
+}
+.cp-stack {
+  position: relative;
+  width: 100%;
+  height: 560px;
+}
+.cp-scene {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+  pointer-events: none;
+}
+.cp-scene.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+/* Progress dots */
+.cp-dots {
+  position: absolute;
+  bottom: -36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+.cp-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(26,24,20,0.2);
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  padding: 0;
+}
+.cp-dot.active {
+  background: var(--ink);
+  width: 24px;
+  border-radius: 3px;
+}
+
+/* Scene label */
+.cp-label {
+  position: absolute;
+  bottom: -58px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  font-weight: 600;
+}
+
+/* ── SCENE 1: PHONE + NOTIFICATION ── */
+.cp-phone-scene {
+  position: relative;
+  width: 300px;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cp-phone-main {
+  width: 170px; height: 340px;
+  background: #0a0c16;
+  border: 2px solid var(--c-border2);
+  border-radius: 32px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 10px 10px;
+  gap: 8px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.04) inset;
+  transform-origin: center bottom;
+}
+@keyframes cp-vibrate {
+  0%   { transform: rotate(0deg) translateX(0px); }
+  10%  { transform: rotate(-1.5deg) translateX(-3px); }
+  20%  { transform: rotate(1.5deg) translateX(3px); }
+  30%  { transform: rotate(-1.5deg) translateX(-3px); }
+  40%  { transform: rotate(1.5deg) translateX(3px); }
+  50%  { transform: rotate(-1deg) translateX(-2px); }
+  60%  { transform: rotate(1deg) translateX(2px); }
+  70%  { transform: rotate(-0.5deg) translateX(-1px); }
+  80%  { transform: rotate(0.5deg) translateX(1px); }
+  90%,100% { transform: rotate(0deg) translateX(0px); }
+}
+.cp-phone-main.vibrating { animation: cp-vibrate 0.55s ease-in-out; }
+
+.cp-phone-glow {
+  position: absolute;
+  bottom: -20px; left: 50%;
+  transform: translateX(-50%);
+  width: 100px; height: 20px;
+  border-radius: 50%;
+  background: rgba(107,63,224,0.5);
+  filter: blur(14px);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.cp-phone-glow.lit { opacity: 1; }
+
+.cp-phone-notch-bar {
+  width: 60px; height: 5px;
+  background: var(--c-surface3);
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.cp-phone-screen {
+  flex: 1; width: 100%;
+  background: var(--c-surface2);
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.cp-ps-statusbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px 0;
+  font-size: 8px;
+  color: var(--c-text-dim);
+  flex-shrink: 0;
+}
+.cp-ps-wallpaper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+}
+.cp-app-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 6px;
+  width: 100%;
+}
+.cp-app-icon {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: var(--c-surface3);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.cp-ai1 { background: rgba(99,102,241,0.3); }
+.cp-ai2 { background: rgba(52,211,153,0.25); }
+.cp-ai3 { background: rgba(251,191,36,0.2); }
+.cp-ai4 { background: rgba(248,113,113,0.2); }
+
+/* Notification */
+.cp-outlook-notif {
+  position: absolute;
+  top: -8px; left: 50%;
+  width: min(240px, 90vw);
+  background: rgba(20,22,36,0.97);
+  border: 1px solid rgba(99,102,241,0.28);
+  border-radius: 12px;
+  padding: 10px 13px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04) inset;
+  opacity: 0;
+  transform: translateX(-50%) translateY(-14px) scale(0.96);
+  transition: all 0.4s cubic-bezier(0.34,1.3,0.64,1);
+  pointer-events: none;
+  z-index: 30;
+  backdrop-filter: blur(10px);
+}
+.cp-outlook-notif.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-8px) scale(1);
+}
+.cp-on-top-row { display:flex;align-items:center;gap:7px;margin-bottom:5px; }
+.cp-on-app-icon {
+  width: 18px; height: 18px;
+  background: linear-gradient(135deg,#6366f1,#8b5cf6);
+  border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.cp-on-subtitle {
+  font-size:9px; color:rgba(255,255,255,0.35); line-height:1.4;
+  margin-bottom:7px; border-bottom:1px solid rgba(255,255,255,0.08);
+  padding-bottom:6px; font-style:italic;
+}
+.cp-outlook-icon { background:none !important; }
+.cp-on-app-name { font-size:10px;color:rgba(255,255,255,0.55);letter-spacing:0.04em;flex:1;font-weight:600; }
+.cp-on-time { font-size:9px;color:rgba(255,255,255,0.25); }
+.cp-on-title { font-size:12px;font-weight:500;color:#fff;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+.cp-on-body { font-size:10.5px;color:rgba(255,255,255,0.42);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+
+/* Vibe rings */
+.cp-vibe-rings {
+  position: absolute; top:50%; left:50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none; z-index: 1;
+}
+.cp-vring {
+  position: absolute;
+  border: 1.5px solid rgba(107,63,224,0.35);
+  border-radius: 36px;
+  opacity: 0;
+}
+.cp-vring-1 { width:194px;height:364px;top:-12px;left:-12px; }
+.cp-vring-2 { width:218px;height:388px;top:-24px;left:-24px; }
+.cp-vring-3 { width:242px;height:412px;top:-36px;left:-36px; }
+@keyframes cp-vringPulse {
+  0% { opacity:0.7;transform:scale(0.97); }
+  100% { opacity:0;transform:scale(1.04); }
+}
+.cp-vring.pulse { animation:cp-vringPulse 0.7s ease-out forwards; }
+.cp-vring-2.pulse { animation-delay:0.12s; }
+.cp-vring-3.pulse { animation:cp-vringPulse 0.7s 0.24s ease-out forwards; }
+@keyframes cp-pulseDot {
+  0%,100% { box-shadow:0 0 0 0 rgba(107,63,224,0.5); }
+  50% { box-shadow:0 0 0 6px rgba(107,63,224,0); }
+}
+
+/* ── SCENE 2: BIG PHONE EMAIL ── */
+
+.cp-phone-big {
+  width:260px; height:520px;
+  background:#07090f;
+  border:2.5px solid var(--c-border2);
+  border-radius:40px;
+  padding:14px 10px;
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  box-shadow:0 40px 80px rgba(0,0,0,0.5),0 0 60px rgba(107,63,224,0.08),inset 0 1px 0 rgba(255,255,255,0.05);
+  transform:perspective(1000px) rotateY(-8deg) rotateX(2deg);
+}
+.cp-pb-notch { width:70px;height:7px;background:var(--c-surface3);border-radius:4px;flex-shrink:0; }
+.cp-pb-screen {
+  flex:1; width:100%;
+  background:var(--c-surface);
+  border-radius:24px;
+  overflow:hidden;
+  display:flex; flex-direction:column;
+}
+.cp-pb-header {
+  background:var(--c-surface2);
+  border-bottom:1px solid var(--c-border);
+  padding:10px 12px; flex-shrink:0;
+}
+.cp-pb-from { font-size:9px;color:var(--c-text-dim);margin-bottom:2px; }
+.cp-pb-subj { font-size:11px;font-weight:500;color:#fff;margin-bottom:5px; }
+.cp-pb-tag {
+  display:inline-block;
+  background:var(--c-indigo-dim); border:1px solid var(--c-indigo-border);
+  border-radius:4px; padding:2px 7px;
+  font-size:8px; color:#a5b4fc; letter-spacing:0.08em; text-transform:uppercase;
+}
+.cp-pb-body { flex:1;padding:10px;display:flex;flex-direction:column;gap:7px;overflow:hidden; }
+.cp-stat-row { display:grid;grid-template-columns:1fr 1fr;gap:5px; }
+.cp-stat-mini {
+  background:var(--c-surface2); border:1px solid var(--c-border);
+  border-radius:8px; padding:7px 9px; text-align:center;
+}
+.cp-sm-num { font-size:18px;font-weight:700;line-height:1; }
+.cp-sm-num.g { color:var(--c-green); }
+.cp-sm-num.r { color:var(--c-red); }
+.cp-sm-num.p { color:#a5b4fc; }
+.cp-sm-lbl { font-size:8px;color:var(--c-text-dim);margin-top:2px; }
+.cp-rv-row {
+  display:flex; align-items:center; gap:6px;
+  padding:5px 7px;
+  background:var(--c-surface2); border:1px solid var(--c-border); border-radius:7px;
+  flex-shrink:0;
+}
+.cp-rv-stars { font-size:9px;color:var(--c-amber);flex-shrink:0; }
+.cp-rv-text { font-size:9px;color:var(--c-text-muted);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap; }
+.cp-rv-loc {
+  font-size:7px;color:#818cf8;
+  background:rgba(99,102,241,0.1);border-radius:3px;padding:1px 5px;flex-shrink:0;
+}
+.cp-phone-big-wrap { position:relative; display:flex; flex-direction:column; align-items:center; gap:8px; }
+.cp-chips-row { display:flex; flex-wrap:wrap; gap:7px; justify-content:center; margin-top:4px; }
+.cp-fchip {
+  background:var(--c-surface2); border:1px solid var(--c-border2);
+  border-radius:8px; padding:6px 11px;
+  font-size:11px; color:var(--c-text-muted); white-space:nowrap;
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+  opacity:0; animation:cp-chipIn 0.5s ease forwards;
+}
+.cp-fchip strong { color:#fff;font-weight:500; }
+.cp-fchip.c1 { animation-delay:0.4s; }
+.cp-fchip.c2 { animation-delay:0.7s; }
+.cp-fchip.c3 { animation-delay:1s; }
+@keyframes cp-chipIn {
+  from { opacity:0;transform:translateY(10px); }
+  to { opacity:1;transform:translateY(0); }
+}
+
+/* ── SCENE 3: ALERT ── */
+.cp-alert-wrap { width:min(400px, calc(100vw - 48px)); }
+.cp-alert-top {
+  background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.2);
+  border-radius:14px 14px 0 0; padding:16px 20px;
+  display:flex; align-items:center; gap:14px;
+}
+.cp-alert-icon-wrap {
+  width:42px;height:42px;
+  background:rgba(239,68,68,0.12); border:1px solid rgba(239,68,68,0.25);
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:18px; flex-shrink:0;
+  animation:cp-alertPulse 2s ease infinite;
+}
+@keyframes cp-alertPulse {
+  0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,0.3);}
+  50%{box-shadow:0 0 0 12px rgba(239,68,68,0);}
+}
+.cp-alert-title { font-size:15px;font-weight:600;color:#fca5a5; }
+.cp-alert-sub { font-size:11px;color:var(--c-text-dim);margin-top:3px; }
+.cp-alert-body {
+  background:#0b0d16; border:1px solid rgba(239,68,68,0.12); border-top:none;
+  border-radius:0 0 14px 14px; padding:18px 20px;
+  display:flex; flex-direction:column; gap:12px;
+}
+.cp-review-block {
+  background:var(--c-surface2); border:1px solid var(--c-border);
+  border-radius:10px; padding:12px 14px;
+}
+.cp-rb-stars { font-size:13px;color:var(--c-red);margin-bottom:7px; }
+.cp-rb-text { font-size:12px;color:var(--c-text-muted);line-height:1.6;margin-bottom:7px;font-style:italic; }
+.cp-rb-meta { font-size:10px;color:var(--c-text-dim);display:flex;gap:8px;align-items:center; }
+.cp-rb-meta-sep { opacity:0.3; }
+.cp-alert-btns { display:flex;gap:10px; }
+.cp-abtn-primary {
+  flex:1; padding:11px;
+  background:var(--c-indigo-dim); border:1px solid var(--c-indigo-border);
+  border-radius:9px; color:#a5b4fc;
+  font-size:13px; font-weight:500; cursor:pointer;
+  font-family:var(--sans); transition:all 0.2s; text-align:center;
+}
+.cp-abtn-primary:hover { background:rgba(99,102,241,0.25); }
+.cp-abtn-ghost {
+  padding:11px 18px;
+  background:transparent; border:1px solid var(--c-border);
+  border-radius:9px; color:var(--c-text-dim);
+  font-size:13px; cursor:pointer; font-family:var(--sans);
+}
+
+/* ── SCENE 4: EMAIL ── */
+.cp-email-wrap {
+  width:min(500px, calc(100vw - 48px));
+  background:var(--c-surface); border:1px solid var(--c-border);
+  border-radius:18px; overflow:hidden;
+  box-shadow:0 40px 80px rgba(0,0,0,0.35);
+}
+.cp-email-chrome {
+  background:var(--c-surface2); border-bottom:1px solid var(--c-border);
+  padding:12px 18px; display:flex; align-items:center; gap:14px;
+}
+.cp-ecd { display:flex;gap:7px; }
+.cp-ecd span { width:11px;height:11px;border-radius:50%;display:block; }
+.cp-ecd .er { background:#3a1a1a;border:1px solid #5a2020; }
+.cp-ecd .ey { background:#3a301a;border:1px solid #5a4820; }
+.cp-ecd .eg { background:#1a3a20;border:1px solid #205a28; }
+.cp-ec-title { flex:1;text-align:center;font-size:11px;color:var(--c-text-dim); }
+.cp-email-body-inner { padding:22px;display:flex;flex-direction:column;gap:14px; }
+.cp-email-sender {
+  display:flex;align-items:center;gap:12px;
+  padding-bottom:14px; border-bottom:1px solid var(--c-border);
+}
+.cp-sender-av {
+  width:38px;height:38px;
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);
+  border-radius:50%; display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:#fff;flex-shrink:0;
+}
+.cp-sender-nm { font-size:13px;font-weight:500;color:#fff; }
+.cp-sender-em { font-size:10px;color:var(--c-text-dim); }
+.cp-email-time-badge {
+  margin-left:auto;font-size:10px;color:var(--c-text-dim);
+  background:var(--c-surface2);border:1px solid var(--c-border);
+  border-radius:6px;padding:3px 8px;
+}
+.cp-email-subject-h { font-size:17px;font-weight:700;color:#fff; }
+.cp-email-greeting-text { font-size:12px;color:var(--c-text-muted);line-height:1.7; }
+.cp-report-block {
+  background:var(--c-surface2);border:1px solid var(--c-border);
+  border-radius:12px;overflow:hidden;
+}
+.cp-rb-header {
+  padding:10px 16px;
+  background:linear-gradient(90deg,rgba(99,102,241,0.08) 0%,transparent 80%);
+  border-bottom:1px solid var(--c-border);
+  font-size:10px;color:#818cf8;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;
+}
+.cp-rb-stats-grid {
+  padding:14px 16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+  border-bottom:1px solid var(--c-border);
+}
+.cp-rsi { text-align:center; }
+.cp-rsi-num { font-size:22px;font-weight:700;line-height:1;margin-bottom:3px; }
+.cp-rsi-num.cp-g { color:var(--c-green); }
+.cp-rsi-num.cp-r { color:var(--c-red); }
+.cp-rsi-num.cp-y { color:var(--c-amber); }
+.cp-rsi-lbl { font-size:9px;color:var(--c-text-dim); }
+.cp-chart-area {
+  padding:14px 16px 22px;display:flex;gap:8px;align-items:flex-end;
+  height:80px;position:relative;
+}
+.cp-cbar {
+  flex:1;border-radius:4px 4px 0 0;height:0;position:relative;
+  transition:height 1.2s cubic-bezier(0.34,1.1,0.64,1);
+}
+.cp-cbar::after {
+  content:attr(data-l);position:absolute;bottom:-18px;left:50%;
+  transform:translateX(-50%);font-size:8px;color:var(--c-text-dim);white-space:nowrap;
+}
+
+/* ── SCENE 5: AI REPLY ── */
+.cp-reply-wrap {
+  width:min(440px, calc(100vw - 48px));
+  background:var(--c-surface);border:1px solid var(--c-border);
+  border-radius:16px;overflow:hidden;
+  box-shadow:0 40px 80px rgba(0,0,0,0.35);
+}
+.cp-reply-header {
+  padding:12px 16px;background:var(--c-surface2);
+  border-bottom:1px solid var(--c-border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.cp-reply-label { font-size:11px;color:var(--c-text-dim); }
+.cp-ai-badge {
+  display:flex;align-items:center;gap:6px;
+  font-size:10px;color:#818cf8;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;
+}
+.cp-ai-pulse {
+  width:6px;height:6px;background:#6366f1;border-radius:50%;
+  animation:cp-pulseDot 1s ease infinite;
+}
+.cp-original-rv {
+  padding:12px 16px;background:#09090f;
+  border-bottom:1px solid var(--c-border);display:flex;gap:10px;
+}
+.cp-rv-av {
+  width:30px;height:30px;background:var(--c-surface3);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:var(--c-text-muted);font-weight:500;flex-shrink:0;
+}
+.cp-rv-detail { flex:1; }
+.cp-rv-name { font-size:11px;font-weight:500;color:rgba(255,255,255,0.6);margin-bottom:2px; }
+.cp-rv-s { font-size:10px;color:var(--c-amber);margin-bottom:4px; }
+.cp-rv-q { font-size:10px;color:var(--c-text-dim);line-height:1.5;font-style:italic; }
+.cp-ai-compose { padding:14px 16px;display:flex;flex-direction:column;gap:8px; }
+.cp-ai-tag {
+  display:flex;align-items:center;gap:6px;
+  font-size:9px;color:#6366f1;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;
+}
+.cp-ai-tag-dot {
+  width:5px;height:5px;background:#6366f1;border-radius:50%;
+  animation:cp-pulseDot 1s ease infinite;
+}
+.cp-ai-text-area {
+  font-size:12px;color:var(--c-text-muted);line-height:1.7;
+  background:var(--c-surface2);border:1px solid var(--c-border);
+  border-radius:9px;padding:12px 14px;min-height:90px;
+}
+.cp-cursor {
+  display:inline-block;width:2px;height:13px;background:#6366f1;
+  vertical-align:middle;margin-left:1px;
+  animation:cp-blink 0.75s step-end infinite;
+}
+@keyframes cp-blink { 0%,100%{opacity:1}50%{opacity:0} }
+.cp-reply-footer {
+  padding:0 16px 14px;display:flex;gap:8px;justify-content:flex-end;
+}
+.cp-btn-post {
+  padding:9px 22px;background:#4f46e5;border:none;border-radius:9px;
+  color:#fff;font-size:13px;font-weight:500;cursor:pointer;
+  font-family:var(--sans);transition:all 0.25s;
+}
+.cp-btn-post:hover { background:#4338ca; }
+.cp-btn-post.done { background:#059669; }
+.cp-btn-edit {
+  padding:9px 16px;background:transparent;border:1px solid var(--c-border);
+  border-radius:9px;color:var(--c-text-dim);font-size:13px;cursor:pointer;font-family:var(--sans);
+}
+
+/* ══════════════════════════════════════════
+   MOBILE-FIRST — complete responsive system
+   ══════════════════════════════════════════ */
+
+/* ── Hamburger button (hidden desktop) ── */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 4px;
+  margin-left: 4px;
+  flex-shrink: 0;
+}
+.nav-burger span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+/* ── Mobile sliding menu ── */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 56px; left: 0; right: 0;
+  background: rgba(240,237,232,0.98);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 16px 20px;
+  flex-direction: column;
+  z-index: 98;
+  box-shadow: 0 8px 32px rgba(26,24,20,0.1);
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-size: 16px; font-weight: 600; color: var(--ink);
+  text-decoration: none; padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  letter-spacing: -0.01em;
+}
+.mobile-menu a:last-of-type { border-bottom: none; }
+
+/* ─────────────────────────────
+   TABLET  ≤ 960px
+───────────────────────────── */
+@media (max-width: 960px) {
+  /* Nav */
+  nav { padding: 0 20px; height: 56px; }
+  .nav-links { display: none; }
+  .nav-text-link { display: none; }
+  .nav-burger { display: flex; }
+  .nav-cta { padding: 9px 16px; font-size: 13px; }
+
+  /* Hero */
+  .hero {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 72px 20px 48px;
+    gap: 0;
+    min-height: auto;
+  }
+  .hero-left { flex: none; width: 100%; padding-right: 0; margin-bottom: 40px; }
+  .hero-right { flex: none; width: 100%; }
+  h1 { font-size: clamp(36px, 6.5vw, 54px); }
+  .hero-sub { font-size: 16px; max-width: 100%; }
+  .hero-actions { flex-direction: column; gap: 10px; }
+  .btn-main, .btn-outline { width: 100%; text-align: center; padding: 15px 20px; }
+
+  /* Cinema */
+  .cinema-wrap { padding-bottom: 52px; }
+  .cp-stack { height: 480px; }
+  .cp-phone-big { transform: none; }
+  .cp-email-wrap { width: min(500px, calc(100vw - 40px)); }
+  .cp-alert-wrap { width: min(400px, calc(100vw - 40px)); }
+  .cp-reply-wrap { width: min(440px, calc(100vw - 40px)); }
+
+  /* Sections */
+  .section { padding: 72px 20px; }
+  .section-h { font-size: clamp(30px, 5.5vw, 48px); }
+  .section-sub { font-size: 16px; max-width: 100%; margin-bottom: 48px; }
+
+  /* Scale */
+  .scale-callout { padding: 56px 20px; }
+  .scale-inner { grid-template-columns: 1fr 1fr; }
+
+  /* Industries */
+  .industries-strip { padding: 24px 20px; }
+
+  /* Pain grid */
+  .pain-grid { grid-template-columns: 1fr; }
+
+  /* Steps */
+  .step { grid-template-columns: 60px 1fr; gap: 0 24px; }
+
+  /* Features */
+  .features-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  /* Dashboard */
+  .dashboard-section { padding: 72px 20px; }
+  .dash-preview-body { grid-template-columns: 1fr; gap: 12px; padding: 20px; }
+
+  /* Sub callout */
+  .sub-callout { flex-direction: column; gap: 24px; }
+
+  /* FAQ */
+  .faq-list { max-width: 100%; }
+
+  /* Footer */
+  .footer-cta { padding: 80px 20px; }
+  footer { padding: 20px; flex-direction: column; text-align: center; gap: 8px; }
+}
+
+/* ─────────────────────────────
+   PHONE  ≤ 600px
+───────────────────────────── */
+@media (max-width: 600px) {
+  /* Nav */
+  nav { padding: 0 14px; height: 52px; }
+  .logo { font-size: 16px; }
+  .logo-mark { width: 28px; height: 28px; border-radius: 7px; }
+  .nav-cta { font-size: 12px; padding: 8px 13px; }
+  .mobile-menu { top: 52px; }
+
+  /* Hero — tighter, no overflow */
+  .hero { padding: 60px 16px 32px; gap: 0; }
+  .hero-left { margin-bottom: 32px; }
+  h1 { font-size: clamp(28px, 8vw, 38px); line-height: 1.1; margin-bottom: 14px; }
+  .hero-sub { font-size: 15px; line-height: 1.6; margin-bottom: 20px; }
+  .hero-actions { margin-bottom: 20px; gap: 10px; }
+  .btn-main { font-size: 15px; padding: 15px 16px; border-radius: 8px; }
+  .btn-outline { font-size: 15px; padding: 14px 16px; border-radius: 8px; }
+  .hero-trust { font-size: 12px; flex-wrap: wrap; gap: 8px; line-height: 1.6; }
+
+  /* Cinema panel — compact & contained */
+  .cinema-wrap { padding-bottom: 56px; }
+  .cp-stack { height: 380px; }
+  .cp-dots { bottom: -30px; }
+  .cp-label { bottom: -50px; font-size: 10px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+
+  /* Scene 1: phone notification */
+  .cp-phone-scene { width: 200px; height: 310px; }
+  .cp-phone-main { width: 140px; height: 280px; border-radius: 26px; padding: 10px 8px 8px; }
+  .cp-vring-1 { width: 164px; height: 304px; top:-12px; left:-12px; }
+  .cp-vring-2 { width: 188px; height: 328px; top:-24px; left:-24px; }
+  .cp-vring-3 { width: 212px; height: 352px; top:-36px; left:-36px; }
+  .cp-outlook-notif { width: min(220px, calc(100vw - 56px)); top: -6px; }
+  .cp-phone-notch-bar { width: 48px; }
+  .cp-phone-glow { width: 80px; }
+
+  /* Scene 2: big phone email */
+  .cp-phone-big { width: 200px; height: 360px; border-radius: 32px; padding: 10px 8px; transform: none; }
+  .cp-pb-body { padding: 7px; gap: 5px; }
+  .cp-stat-row { grid-template-columns: 1fr 1fr; gap: 4px; }
+  .cp-chips-row { gap: 5px; margin-top: 8px; }
+  .cp-fchip { font-size: 10px; padding: 5px 9px; }
+
+  /* Scene 3: alert */
+  .cp-alert-wrap { width: calc(100vw - 32px); max-width: 360px; }
+  .cp-alert-top { padding: 12px 14px; gap: 10px; }
+  .cp-alert-icon-wrap { width: 36px; height: 36px; font-size: 15px; flex-shrink: 0; }
+  .cp-alert-title { font-size: 13px; }
+  .cp-alert-sub { font-size: 10px; }
+  .cp-alert-body { padding: 14px; gap: 10px; }
+  .cp-rb-text { font-size: 11px; }
+  .cp-alert-btns { gap: 8px; }
+  .cp-abtn-primary, .cp-abtn-ghost { font-size: 12px; padding: 9px 12px; }
+
+  /* Scene 4: email report */
+  .cp-email-wrap { width: calc(100vw - 32px); max-width: 380px; }
+  .cp-email-chrome { padding: 10px 14px; }
+  .cp-ec-title { font-size: 10px; }
+  .cp-email-body-inner { padding: 12px; gap: 10px; }
+  .cp-email-sender { gap: 9px; padding-bottom: 10px; }
+  .cp-sender-av { width: 32px; height: 32px; font-size: 11px; }
+  .cp-sender-nm { font-size: 12px; }
+  .cp-sender-em { font-size: 9px; }
+  .cp-email-time-badge { font-size: 9px; padding: 2px 6px; }
+  .cp-email-subject-h { font-size: 13px; }
+  .cp-email-greeting-text { font-size: 11px; }
+  .cp-rb-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 10px 12px; }
+  .cp-rsi-num { font-size: 18px; }
+  .cp-rsi-lbl { font-size: 8px; }
+  .cp-chart-area { height: 58px; padding: 8px 12px 18px; gap: 5px; }
+
+  /* Scene 5: AI reply */
+  .cp-reply-wrap { width: calc(100vw - 32px); max-width: 380px; }
+  .cp-reply-header { padding: 10px 14px; }
+  .cp-reply-label { font-size: 10px; }
+  .cp-ai-badge { font-size: 9px; }
+  .cp-original-rv { padding: 10px 14px; gap: 8px; }
+  .cp-rv-av { width: 26px; height: 26px; font-size: 10px; }
+  .cp-rv-name { font-size: 10px; }
+  .cp-rv-q { font-size: 9px; }
+  .cp-ai-compose { padding: 10px 14px; gap: 6px; }
+  .cp-ai-text-area { min-height: 64px; font-size: 11px; padding: 10px 12px; }
+  .cp-reply-footer { padding: 0 14px 12px; gap: 6px; }
+  .cp-btn-post, .cp-btn-edit { font-size: 12px; padding: 8px 14px; }
+
+  /* Industries strip */
+  .industries-strip { padding: 18px 14px; }
+  .industries-label { font-size: 10px; margin-bottom: 12px; }
+  .ind-item {
+    font-size: 13px; padding: 6px 12px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .ind-item:last-child { border-bottom: none; }
+  .industries-row { flex-direction: column; align-items: center; gap: 0; }
+
+  /* Scale callout */
+  .scale-callout { padding: 40px 16px; }
+  .scale-inner { grid-template-columns: 1fr; gap: 1px; }
+  .scale-item { padding: 28px 20px; }
+  .scale-num { font-size: 44px; }
+  .scale-label { font-size: 13px; }
+
+  /* Sections */
+  .section { padding: 48px 16px; }
+  .section-tag { font-size: 10px; }
+  .section-h { font-size: clamp(24px, 7.5vw, 32px); letter-spacing: -0.025em; }
+  .section-sub { font-size: 14px; margin-bottom: 32px; line-height: 1.65; }
+
+  /* Pain cards */
+  .pain-grid { gap: 12px; }
+  .pain-card { padding: 22px 18px; border-radius: 12px; }
+  .pain-title { font-size: 17px; }
+  .pain-desc { font-size: 13px; }
+  .pain-list li { font-size: 13px; }
+
+  /* Steps */
+  .step { grid-template-columns: 40px 1fr; gap: 0 14px; padding-bottom: 32px; }
+  .step-num { width: 36px; height: 36px; font-size: 14px; }
+  .step-title { font-size: 16px; }
+  .step-desc { font-size: 13px; }
+  .step-visual { padding: 12px 14px; margin-top: 12px; border-radius: 10px; font-size: 12px; }
+
+  /* Features */
+  .features-grid { grid-template-columns: 1fr; gap: 10px; }
+  .feature-card { padding: 20px 18px; border-radius: 12px; }
+  .feature-icon { width: 38px; height: 38px; font-size: 18px; margin-bottom: 12px; }
+  .feature-title { font-size: 15px; }
+  .feature-desc { font-size: 13px; }
+
+  /* Hero dashboard card (the one in the hero section) */
+  .dashboard-card { border-radius: 14px; }
+  .dash-header { padding: 12px 14px; }
+  .dash-title { font-size: 11px; }
+  .dash-body { padding: 14px; }
+  .dash-stats { grid-template-columns: repeat(3, 1fr); gap: 7px; margin-bottom: 14px; }
+  .dash-stat { padding: 10px 10px; border-radius: 9px; }
+  .ds-val { font-size: 20px; }
+  .ds-label { font-size: 9px; }
+  .ds-delta { font-size: 9px; }
+  .c-label { font-size: 11px; flex: 0 0 100px; }
+  .c-count { font-size: 9px; }
+  .complaint-row { padding: 7px 0; gap: 8px; }
+  .dash-email-row { font-size: 11px; padding: 10px 12px; gap: 8px; margin-top: 12px; }
+  .dash-section-title { font-size: 9px; }
+
+  /* Dashboard dark section */
+  .dashboard-section { padding: 48px 16px; }
+  .dashboard-inner .section-sub { margin-bottom: 32px; }
+  .dash-preview { border-radius: 14px; margin-top: 36px; }
+  .dash-preview-header { padding: 12px 16px; }
+  .dash-preview-body { padding: 14px; gap: 10px; }
+  .dp-card { padding: 14px; border-radius: 10px; }
+  .dp-val { font-size: 26px; }
+  .dp-sub { font-size: 11px; }
+  .dp-label { font-size: 9px; }
+  .reply-box { font-size: 11px; line-height: 1.55; }
+  .cld-item { font-size: 11px; }
+  .cld-badge { font-size: 9px; padding: 2px 7px; }
+  .rb { font-size: 11px; padding: 6px 12px; }
+
+  /* Sub callout */
+  .sub-callout { padding: 24px 18px; border-radius: 12px; margin-top: 40px; }
+  .sub-callout-text h3 { font-size: 20px; }
+  .sub-callout-text p { font-size: 13px; }
+  .sub-pills { gap: 8px; margin-top: 12px; }
+  .sub-pill { font-size: 12px; padding: 5px 14px; }
+
+  /* FAQ */
+  .faq-q { font-size: 14px; padding: 18px 0; gap: 12px; }
+  .faq-a-inner { font-size: 14px; padding-bottom: 18px; }
+  .faq-icon { font-size: 18px; }
+  .faq-item.open .faq-a { max-height: 400px; }
+  #faq .section-h { margin-bottom: 28px !important; }
+
+  /* Footer CTA */
+  .footer-cta { padding: 56px 16px; }
+  .footer-cta h2 { font-size: clamp(26px, 8vw, 40px); margin-bottom: 14px; line-height: 1.1; }
+  .footer-cta p { font-size: 14px; margin-bottom: 28px; line-height: 1.6; }
+  .footer-btn { width: 100%; padding: 15px 20px; font-size: 15px; border-radius: 8px; }
+  .footer-note { font-size: 12px; margin-top: 16px; }
+
+  /* Footer */
+  footer { padding: 18px 16px; gap: 6px; font-size: 11px; }
+}
+
+/* ─────────────────────────────
+   TINY  ≤ 380px
+───────────────────────────── */
+@media (max-width: 380px) {
+  h1 { font-size: 27px; }
+  .hero-sub { font-size: 14px; }
+  .cp-stack { height: 360px; }
+  .cp-phone-big { width: 180px; height: 340px; }
+  .cp-phone-main { width: 128px; height: 260px; }
+  .cp-reply-wrap, .cp-alert-wrap, .cp-email-wrap { width: calc(100vw - 24px); }
+  .dash-stats { grid-template-columns: repeat(3,1fr); gap: 5px; }
+  .ds-val { font-size: 18px; }
+  .scale-num { font-size: 38px; }
+  .btn-main, .btn-outline { font-size: 14px; }
+  .lead-field-row { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="4"/><circle cx="8" cy="8" r="2" fill="var(--bg)" opacity="0.6"/></svg>
+    </div>
+    ReviewPulse
+  </div>
+  <div class="nav-links">
+    <a href="#problem">The Problem</a>
+    <a href="#how-it-works">How it works</a>
+    <a href="#features">Features</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <div class="nav-right">
+    <button class="nav-cta" onclick="document.getElementById('trial').scrollIntoView({behavior:'smooth'})">Try it free →</button>
+    <button class="nav-burger" id="navBurger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#problem" onclick="toggleMenu()">The Problem</a>
+  <a href="#how-it-works" onclick="toggleMenu()">How it works</a>
+  <a href="#features" onclick="toggleMenu()">Features</a>
+  <a href="#faq" onclick="toggleMenu()">FAQ</a>
+  <button class="btn-main" style="width:100%;margin-top:8px" onclick="document.getElementById('trial').scrollIntoView({behavior:'smooth'});toggleMenu()">Try it free →</button>
+</div>
+
+<!-- HERO -->
+<section style="background:var(--bg);overflow:clip;">
+<div class="hero">
+  <div class="hero-left">
+    <h1>Hundreds of reviews.<br>One team can't<br>read them <em>all.</em></h1>
+    <p class="hero-sub">ReviewPulse automatically reads every Google review across all your locations, finds the patterns, and delivers clear weekly reports to your entire leadership team — so nothing slips through the cracks.</p>
+    <div class="hero-actions">
+      <button class="btn-main" onclick="document.getElementById('trial').scrollIntoView({behavior:'smooth'})">
+        Try it free for your business →
+      </button>
+      <button class="btn-outline" onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">
+        See how it works
+      </button>
+    </div>
+    <div class="hero-trust">
+      <span>No contracts</span>
+      <span class="trust-sep"></span>
+      <span>Cancel anytime</span>
+      <span class="trust-sep"></span>
+      <span>Setup in minutes</span>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="cinema-wrap">
+      <div class="cp-stack">
+      <!-- Progress dots -->
+      <div class="cp-dots" id="cpDots">
+        <button class="cp-dot active" onclick="cpGoTo(0)"></button>
+        <button class="cp-dot" onclick="cpGoTo(1)"></button>
+        <button class="cp-dot" onclick="cpGoTo(2)"></button>
+        <button class="cp-dot" onclick="cpGoTo(3)"></button>
+        <button class="cp-dot" onclick="cpGoTo(4)"></button>
+      </div>
+      <!-- Scene label -->
+      <div class="cp-label" id="cpLabel">Notification arrives</div>
+
+      <!-- SCENE 1: VIBRATING PHONE -->
+      <div class="cp-scene active" id="cs1">
+        <div class="cp-phone-scene">
+          <div class="cp-vibe-rings">
+            <div class="cp-vring cp-vring-1" id="cpVr1"></div>
+            <div class="cp-vring cp-vring-2" id="cpVr2"></div>
+            <div class="cp-vring cp-vring-3" id="cpVr3"></div>
+          </div>
+          <div class="cp-outlook-notif" id="cpOutlookNotif">
+            <div class="cp-on-subtitle">ReviewPulse sends your digest straight to your inbox — no login needed</div>
+            <div class="cp-on-top-row">
+              <div class="cp-on-app-icon cp-outlook-icon">
+                <svg viewBox="0 0 18 18" width="13" height="13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="18" height="18" rx="3" fill="#0078D4"/>
+                  <rect x="2" y="4" width="8" height="10" rx="1" fill="white" opacity="0.9"/>
+                  <rect x="4" y="6" width="4" height="1.5" rx="0.5" fill="#0078D4"/>
+                  <rect x="4" y="8.5" width="4" height="1.5" rx="0.5" fill="#0078D4"/>
+                  <rect x="4" y="11" width="2.5" height="1.5" rx="0.5" fill="#0078D4"/>
+                  <path d="M10 9l6-4v8l-6-4z" fill="white" opacity="0.8"/>
+                </svg>
+              </div>
+              <span class="cp-on-app-name">Outlook</span>
+              <span class="cp-on-time">now</span>
+            </div>
+            <div class="cp-on-title">📊 Your weekly review digest is ready</div>
+            <div class="cp-on-body">ReviewPulse · 47 reviews · 4.3★ avg · 2 alerts</div>
+          </div>
+          <div class="cp-phone-main" id="cpPhoneMain">
+            <div class="cp-phone-notch-bar"></div>
+            <div class="cp-phone-screen">
+              <div class="cp-ps-statusbar"><span>9:41</span><span>●●●</span></div>
+              <div class="cp-ps-wallpaper">
+                <div class="cp-app-grid">
+                  <div class="cp-app-icon cp-ai1"></div><div class="cp-app-icon cp-ai2"></div>
+                  <div class="cp-app-icon"></div><div class="cp-app-icon cp-ai3"></div>
+                  <div class="cp-app-icon"></div><div class="cp-app-icon cp-ai4"></div>
+                  <div class="cp-app-icon cp-ai1"></div><div class="cp-app-icon"></div>
+                  <div class="cp-app-icon"></div><div class="cp-app-icon cp-ai2"></div>
+                  <div class="cp-app-icon cp-ai3"></div><div class="cp-app-icon"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="cp-phone-glow" id="cpPhoneGlow"></div>
+        </div>
+      </div>
+
+      <!-- SCENE 2: PHONE EMAIL -->
+      <div class="cp-scene" id="cs2">
+        <div class="cp-phone-big-wrap">
+          <div class="cp-phone-big">
+            <div class="cp-pb-notch"></div>
+            <div class="cp-pb-screen">
+              <div class="cp-pb-header">
+                <div class="cp-pb-from">From: reports@reviewpulse.ai</div>
+                <div class="cp-pb-subj">Weekly Review Report — 5 Locations</div>
+                <div style="margin-top:5px;"><span class="cp-pb-tag">Monday Morning Digest</span></div>
+              </div>
+              <div class="cp-pb-body">
+                <div class="cp-stat-row">
+                  <div class="cp-stat-mini"><div class="cp-sm-num cp-g">47</div><div class="cp-sm-lbl">Reviews</div></div>
+                  <div class="cp-stat-mini"><div class="cp-sm-num">4.3</div><div class="cp-sm-lbl">Avg Rating</div></div>
+                  <div class="cp-stat-mini"><div class="cp-sm-num cp-r">2</div><div class="cp-sm-lbl">Alerts</div></div>
+                  <div class="cp-stat-mini"><div class="cp-sm-num cp-p">89%</div><div class="cp-sm-lbl">Responded</div></div>
+                </div>
+                <div class="cp-rv-row"><div class="cp-rv-stars">★★★★★</div><div class="cp-rv-text">Best service I've had honestly</div><div class="cp-rv-loc">Dubai</div></div>
+                <div class="cp-rv-row"><div class="cp-rv-stars">★☆☆☆☆</div><div class="cp-rv-text">Waited 40 mins, no one came</div><div class="cp-rv-loc">Ajman</div></div>
+                <div class="cp-rv-row"><div class="cp-rv-stars">★★★★★</div><div class="cp-rv-text">Always consistent, love it here</div><div class="cp-rv-loc">SHJ</div></div>
+                <div class="cp-rv-row"><div class="cp-rv-stars">★★★★☆</div><div class="cp-rv-text">Great food, slightly slow service</div><div class="cp-rv-loc">AD</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="cp-chips-row">
+            <div class="cp-fchip c1">This week: <strong>47 reviews</strong></div>
+            <div class="cp-fchip c2">Response rate: <strong>89%</strong></div>
+            <div class="cp-fchip c3">Avg rating: <strong>4.3 ⭐</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCENE 3: ALERT -->
+      <div class="cp-scene" id="cs3">
+        <div class="cp-alert-wrap">
+          <div class="cp-alert-top">
+            <div class="cp-alert-icon-wrap">⚠</div>
+            <div>
+              <div class="cp-alert-title">1-Star Alert — Ajman Branch</div>
+              <div class="cp-alert-sub">Detected 2 minutes ago · High priority</div>
+            </div>
+          </div>
+          <div class="cp-alert-body">
+            <div class="cp-review-block">
+              <div class="cp-rb-stars">★☆☆☆☆</div>
+              <div class="cp-rb-text">"Waited 40 minutes and nobody acknowledged us. The staff completely ignored our table. Really disappointing experience."</div>
+              <div class="cp-rb-meta">
+                <span>Reem Al-Mutawa</span><span class="cp-rb-meta-sep">·</span>
+                <span>Google Maps</span><span class="cp-rb-meta-sep">·</span><span>2h ago</span>
+              </div>
+            </div>
+            <div class="cp-alert-btns">
+              <button class="cp-abtn-primary" id="cpDraftBtn">Draft AI reply</button>
+              <button class="cp-abtn-ghost">Dismiss</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCENE 4: EMAIL REPORT -->
+      <div class="cp-scene" id="cs4">
+        <div class="cp-email-wrap">
+          <div class="cp-email-chrome">
+            <div class="cp-ecd"><span class="cp-er"></span><span class="cp-ey"></span><span class="cp-eg"></span></div>
+            <div class="cp-ec-title">Mail — Monday 8:07 AM</div>
+          </div>
+          <div class="cp-email-body-inner">
+            <div class="cp-email-sender">
+              <div class="cp-sender-av">RP</div>
+              <div>
+                <div class="cp-sender-nm">ReviewPulse Weekly Report</div>
+                <div class="cp-sender-em">reports@reviewpulse.ai</div>
+              </div>
+              <div class="cp-email-time-badge">8:07 AM</div>
+            </div>
+            <div class="cp-email-subject-h">Your week in reviews — 5 locations 📊</div>
+            <div class="cp-email-greeting-text">Good morning, Ahmed. Here's everything across your locations this week.</div>
+            <div class="cp-report-block">
+              <div class="cp-rb-header">Weekly Performance Overview</div>
+              <div class="cp-rb-stats-grid">
+                <div class="cp-rsi"><div class="cp-rsi-num cp-g">47</div><div class="cp-rsi-lbl">Reviews</div></div>
+                <div class="cp-rsi"><div class="cp-rsi-num">4.3</div><div class="cp-rsi-lbl">Avg rating</div></div>
+                <div class="cp-rsi"><div class="cp-rsi-num cp-r">2</div><div class="cp-rsi-lbl">Alerts</div></div>
+                <div class="cp-rsi"><div class="cp-rsi-num cp-y">89%</div><div class="cp-rsi-lbl">Responded</div></div>
+              </div>
+              <div class="cp-chart-area" id="cpChartArea">
+                <div class="cp-cbar" data-l="Dubai" data-h="78" style="background:rgba(99,102,241,0.6);"></div>
+                <div class="cp-cbar" data-l="Ajman" data-h="38" style="background:rgba(239,68,68,0.55);"></div>
+                <div class="cp-cbar" data-l="Sharjah" data-h="62" style="background:rgba(99,102,241,0.45);"></div>
+                <div class="cp-cbar" data-l="Abu Dhabi" data-h="50" style="background:rgba(99,102,241,0.5);"></div>
+                <div class="cp-cbar" data-l="RAK" data-h="30" style="background:rgba(99,102,241,0.35);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCENE 5: AI REPLY -->
+      <div class="cp-scene" id="cs5">
+        <div class="cp-reply-wrap">
+          <div class="cp-reply-header">
+            <span class="cp-reply-label">Replying to review</span>
+            <div class="cp-ai-badge"><div class="cp-ai-pulse"></div> AI Draft</div>
+          </div>
+          <div class="cp-original-rv">
+            <div class="cp-rv-av">R</div>
+            <div class="cp-rv-detail">
+              <div class="cp-rv-name">Reem Al-Mutawa</div>
+              <div class="cp-rv-s">★☆☆☆☆</div>
+              <div class="cp-rv-q">"Waited 40 minutes and nobody acknowledged us..."</div>
+            </div>
+          </div>
+          <div class="cp-ai-compose">
+            <div class="cp-ai-tag"><div class="cp-ai-tag-dot"></div> AI drafting reply</div>
+            <div class="cp-ai-text-area" id="cpAiText"></div>
+          </div>
+          <div class="cp-reply-footer">
+            <button class="cp-btn-edit">Edit</button>
+            <button class="cp-btn-post" id="cpPostBtn">Post Reply →</button>
+          </div>
+        </div>
+      </div>
+      </div><!-- /cp-stack -->
+    </div><!-- /cinema-wrap -->
+  </div><!-- /hero-right -->
+</div>
+</section>
+
+<!-- INDUSTRIES -->
+<div class="industries-strip">
+  <div class="industries-label">Built for enterprises where reputation drives revenue</div>
+  <div class="industries-row">
+    <span class="ind-item">Restaurant Chains</span>
+    <span class="ind-item">Hotel Groups</span>
+    <span class="ind-item">Retail Networks</span>
+    <span class="ind-item">Healthcare Groups</span>
+    <span class="ind-item">Automotive</span>
+    <span class="ind-item">Banking & Finance</span>
+  </div>
+</div>
+
+<!-- SCALE NUMBERS -->
+<div class="scale-callout">
+  <div class="scale-inner">
+    <div class="scale-item">
+      <div class="scale-num">100s</div>
+      <div class="scale-label">of new reviews every week — across every branch, every location</div>
+    </div>
+    <div class="scale-item">
+      <div class="scale-num">0</div>
+      <div class="scale-label">team members who have time to read, analyse, and act on all of them</div>
+    </div>
+    <div class="scale-item">
+      <div class="scale-num">1</div>
+      <div class="scale-label">weekly report that brings it all together for your entire leadership team</div>
+    </div>
+  </div>
+</div>
+
+<!-- THE PROBLEM -->
+<section class="section" id="problem">
+  <div class="section-tag">The problem</div>
+  <h2 class="section-h">Your reviews are piling up.<br><em>No one's reading them.</em></h2>
+  <p class="section-sub">For large companies with multiple locations, Google reviews are one of the richest sources of real customer feedback — and they go almost completely unread at scale.</p>
+
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="pain-label">❌ Without ReviewPulse</div>
+      <div class="pain-title">Reviews stack up. Problems go unnoticed.</div>
+      <ul class="pain-list">
+        <li><span class="pi">—</span> Someone has to manually open Google and scroll through every branch's reviews</li>
+        <li><span class="pi">—</span> No one sees the pattern — the same complaint appearing at 6 different locations</li>
+        <li><span class="pi">—</span> Negative reviews go unanswered for days, weeks, sometimes never</li>
+        <li><span class="pi">—</span> The CEO and ops team have no idea what customers are actually saying</li>
+        <li><span class="pi">—</span> One-star reviews damage your ranking before anyone even notices</li>
+      </ul>
+    </div>
+    <div class="pain-card solution">
+      <div class="pain-label">✓ With ReviewPulse</div>
+      <div class="pain-title">Every review read. Every issue surfaced.</div>
+      <ul class="pain-list">
+        <li><span class="pi" style="color:var(--green)">✓</span> Every review across all locations analysed automatically, every single day</li>
+        <li><span class="pi" style="color:var(--green)">✓</span> Cross-location patterns surfaced: "47 complaints about wait time this week across 8 branches"</li>
+        <li><span class="pi" style="color:var(--green)">✓</span> AI-drafted replies ready to post in one click — or fully automated</li>
+        <li><span class="pi" style="color:var(--green)">✓</span> Leadership team gets a clean weekly digest every Monday morning</li>
+        <li><span class="pi" style="color:var(--green)">✓</span> Instant alerts the moment a 1-star review goes live anywhere</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works" style="background:var(--bg2);max-width:100%;padding-left:0;padding-right:0">
+  <div style="max-width:1200px;margin:0 auto;padding:0 clamp(16px,4vw,48px)">
+  <div class="section-tag">How it works</div>
+  <h2 class="section-h">Up and running<br>in <em>under 10 minutes.</em></h2>
+  <p class="section-sub">No IT team needed. No complex integrations. You connect your Google Business profiles once and ReviewPulse handles everything from there.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">1</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-right">
+        <div class="step-title">Connect all your locations</div>
+        <div class="step-desc">Add your Google Business profiles — one by one or in bulk. ReviewPulse connects instantly and imports your full review history across every branch going as far back as available. No CSV uploads, no manual work.</div>
+        <div class="step-visual">
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink3);font-weight:700;margin-bottom:12px">Locations connected</div>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <div style="background:var(--bg);border-radius:9px;padding:10px 15px;font-size:12px;font-weight:500;color:var(--ink2);border:1px solid var(--border);display:flex;justify-content:space-between"><span>📍 Riyadh — Mall of Arabia</span><span style="color:var(--green);font-size:11px;font-weight:700">✓ 312 reviews</span></div>
+            <div style="background:var(--bg);border-radius:9px;padding:10px 15px;font-size:12px;font-weight:500;color:var(--ink2);border:1px solid var(--border);display:flex;justify-content:space-between"><span>📍 Dubai — JBR Branch</span><span style="color:var(--green);font-size:11px;font-weight:700">✓ 541 reviews</span></div>
+            <div style="background:var(--bg);border-radius:9px;padding:10px 15px;font-size:12px;font-weight:500;color:var(--ink2);border:1px solid var(--border);display:flex;justify-content:space-between"><span>📍 Abu Dhabi — Yas Mall</span><span style="color:var(--green);font-size:11px;font-weight:700">✓ 228 reviews</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">2</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-right">
+        <div class="step-title">Your dashboard goes live — instantly</div>
+        <div class="step-desc">From day one, your entire review history is analysed, categorised, and searchable. See which issues are appearing most across which locations. Compare this month to last year. Drill into any branch, any time period, any topic.</div>
+        <div class="step-visual" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:8px">
+          <div style="background:var(--bg);border-radius:9px;padding:11px;text-align:center">
+            <div style="font-size:9px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:5px">This month</div>
+            <div style="font-size:22px;font-weight:800;color:var(--gold);letter-spacing:-0.03em">4.1 ★</div>
+          </div>
+          <div style="background:var(--bg);border-radius:9px;padding:11px;text-align:center">
+            <div style="font-size:9px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:5px">Last year</div>
+            <div style="font-size:22px;font-weight:800;color:var(--red);letter-spacing:-0.03em">3.6 ★</div>
+          </div>
+          <div style="background:var(--bg);border-radius:9px;padding:11px;text-align:center">
+            <div style="font-size:9px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:5px">Locations</div>
+            <div style="font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-0.03em">14</div>
+          </div>
+          <div style="background:var(--green-light);border-radius:9px;padding:11px;grid-column:1/-1;font-size:12px;font-weight:600;color:var(--green)">↑ Overall rating improved +0.5 stars vs last year across all branches</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">3</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-right">
+        <div class="step-title">The right people get the right insights, every Monday</div>
+        <div class="step-desc">Every Monday at 9am, ReviewPulse sends an executive-style digest to whoever you add — CEO, CMO, regional managers, branch managers, operations leads. The report shows what happened this week, what customers complained about most, what they loved, and the top 3 priorities to act on. No login required to stay informed.</div>
+        <div class="step-visual">
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;font-weight:700;color:var(--ink3);margin-bottom:12px">Weekly report sent to — every Monday 9:00am</div>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <div style="font-size:12px;font-weight:500;display:flex;align-items:center;gap:8px;color:var(--ink2)"><span style="color:var(--green);font-weight:700">✓</span> ceo@company.com · CEO</div>
+            <div style="font-size:12px;font-weight:500;display:flex;align-items:center;gap:8px;color:var(--ink2)"><span style="color:var(--green);font-weight:700">✓</span> ops@company.com · Operations Director</div>
+            <div style="font-size:12px;font-weight:500;display:flex;align-items:center;gap:8px;color:var(--ink2)"><span style="color:var(--green);font-weight:700">✓</span> marketing@company.com · Head of Marketing</div>
+            <div style="font-size:12px;font-weight:500;display:flex;align-items:center;gap:8px;color:var(--ink2)"><span style="color:var(--green);font-weight:700">✓</span> + 8 branch managers</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">4</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-right">
+        <div class="step-title">Respond to reviews — manually or on full autopilot</div>
+        <div class="step-desc">Every review that comes in, ReviewPulse generates a ready-to-post reply in your brand voice. Approve them individually, or flip on Auto-Reply and ReviewPulse responds to every review automatically — 24/7, across every location.</div>
+        <div class="step-visual">
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;font-weight:700;color:var(--ink3);margin-bottom:12px">AI reply — ready to post</div>
+          <div style="font-size:12px;color:var(--ink2);font-style:italic;line-height:1.65;padding:12px 14px;background:var(--bg);border-radius:8px;border:1px solid var(--border);margin-bottom:10px">"Thank you for your feedback, Sarah. We're sorry to hear about the wait — this isn't the standard we aim for. We're adding weekend staff at this location to address this. We'd love to see you again soon."</div>
+          <div style="display:flex;gap:8px">
+            <button style="background:var(--violet);color:white;border:none;border-radius:7px;padding:7px 18px;font-size:12px;font-family:var(--sans);font-weight:700;cursor:pointer">Post reply</button>
+            <button style="background:transparent;border:1px solid var(--border);border-radius:7px;padding:7px 14px;font-size:12px;font-family:var(--sans);font-weight:500;cursor:pointer;color:var(--ink2)">Edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-tag">Features</div>
+  <h2 class="section-h">Everything you need.<br><em>Nothing you don't.</em></h2>
+  <p class="section-sub">ReviewPulse is purpose-built for businesses that need to act on customer feedback</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <div class="feature-title">Multi-location dashboard</div>
+      <div class="feature-desc">See every location's performance in one view. Compare ratings, track trends, and identify which branches need attention — all in real time.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔔</div>
+      <div class="feature-title">Instant 1-star alerts</div>
+      <div class="feature-desc">The moment a low-rating review appears anywhere across your network, you and your team are notified instantly. No more finding problems weeks later.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">✉️</div>
+      <div class="feature-title">Monday morning digest</div>
+      <div class="feature-desc">Every Monday at 9am, your entire leadership team gets a clean, readable summary of the week in reviews — no login required.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🤖</div>
+      <div class="feature-title">AI-powered replies</div>
+      <div class="feature-desc">ReviewPulse drafts replies in your brand voice for every review. Approve individually or enable Auto-Reply to respond 24/7 automatically.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔍</div>
+      <div class="feature-title">Pattern detection</div>
+      <div class="feature-desc">Stop missing the big picture. ReviewPulse finds recurring themes across locations — "47 complaints about wait times this week across 8 branches."</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📅</div>
+      <div class="feature-title">Full review history</div>
+      <div class="feature-desc">Import and analyse your entire review history from day one. Compare any time period, track improvements, and benchmark against previous years.</div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD SECTION -->
+<section class="dashboard-section" id="dashboard">
+  <div class="dashboard-inner">
+    <div class="section-tag">The dashboard</div>
+    <h2 class="section-h">Everything, in one place.</h2>
+    <p class="section-sub">Your full review intelligence platform — ratings, themes, response rates, and AI replies — all in a single clean interface.</p>
+    <div class="dash-preview">
+      <div class="dash-preview-header">
+        <div class="dot3"><span style="background:#ff5f56"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>
+        <div style="flex:1;text-align:center;font-size:12px;font-weight:600;color:rgba(240,237,232,0.3)">ReviewPulse — Dashboard</div>
+      </div>
+      <div class="dash-preview-body">
+        <div class="dp-card">
+          <div class="dp-label">Network avg rating</div>
+          <div class="dp-val" style="color:#c9922a">4.1 ★</div>
+          <div class="dp-sub">↑ +0.3 vs last month</div>
+          <div style="margin-top:16px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-end;height:60px;gap:4px">
+              <div style="flex:1;background:rgba(107,63,224,0.35);border-radius:3px 3px 0 0;height:65%"></div>
+              <div style="flex:1;background:rgba(107,63,224,0.35);border-radius:3px 3px 0 0;height:55%"></div>
+              <div style="flex:1;background:rgba(107,63,224,0.35);border-radius:3px 3px 0 0;height:70%"></div>
+              <div style="flex:1;background:rgba(107,63,224,0.35);border-radius:3px 3px 0 0;height:60%"></div>
+              <div style="flex:1;background:rgba(107,63,224,0.6);border-radius:3px 3px 0 0;height:80%"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-top:4px">
+              <div style="flex:1;text-align:center;font-size:9px;font-weight:600;color:rgba(240,237,232,0.2)">J</div>
+              <div style="flex:1;text-align:center;font-size:9px;font-weight:600;color:rgba(240,237,232,0.2)">F</div>
+              <div style="flex:1;text-align:center;font-size:9px;font-weight:600;color:rgba(240,237,232,0.2)">M</div>
+              <div style="flex:1;text-align:center;font-size:9px;font-weight:600;color:rgba(240,237,232,0.2)">A</div>
+              <div style="flex:1;text-align:center;font-size:9px;font-weight:600;color:rgba(240,237,232,0.2)">M</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dp-card">
+          <div class="dp-label">What customers are saying — this week</div>
+          <div class="complaint-list-dark" style="margin-top:8px">
+            <div class="cld-item"><span class="cld-text">Slow weekend service</span><span class="cld-badge badge-red">89 mentions</span></div>
+            <div class="cld-item"><span class="cld-text">Food arrived cold</span><span class="cld-badge badge-red">62 mentions</span></div>
+            <div class="cld-item"><span class="cld-text">Staff attitude</span><span class="cld-badge badge-amber">48 mentions</span></div>
+            <div class="cld-item"><span class="cld-text">Beautiful ambiance</span><span class="cld-badge badge-green">121 praised</span></div>
+            <div class="cld-item"><span class="cld-text">Pasta dishes loved</span><span class="cld-badge badge-green">97 praised</span></div>
+          </div>
+        </div>
+
+        <div class="dp-card">
+          <div class="dp-label">AI reply ready to post</div>
+          <div style="margin-top:8px;font-size:11px;font-weight:500;color:rgba(240,237,232,0.35);margin-bottom:8px">Sarah M. · ★★☆☆☆ · Dubai JBR · 2 days ago</div>
+          <div class="reply-box">"Thank you for your feedback Sarah. We're sorry about the wait — we're adding weekend staff to address this. We'd love to see you again soon."</div>
+          <div class="reply-btn-row">
+            <button class="rb rb-send">Post reply</button>
+            <button class="rb rb-edit">Edit</button>
+          </div>
+          <div style="margin-top:16px;padding-top:13px;border-top:1px solid rgba(255,255,255,0.06)">
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.09em;font-weight:700;color:rgba(240,237,232,0.25);margin-bottom:9px">Auto-reply</div>
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:12px;font-weight:500;color:rgba(240,237,232,0.45)">Post replies automatically</span>
+              <div style="width:38px;height:22px;background:var(--violet);border-radius:11px;position:relative;cursor:pointer"><div style="width:16px;height:16px;background:white;border-radius:50%;position:absolute;top:3px;right:3px;transition:all 0.2s"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-tag">FAQ</div>
+  <h2 class="section-h" style="margin-bottom:52px">Common questions</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How does ReviewPulse connect to our Google reviews? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">You connect your Google Business profiles when you sign up — it takes about 30 seconds per location. ReviewPulse then pulls your reviews automatically every day. No manual exports, no copy-pasting, no IT involvement needed.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">We have 20+ locations. Can ReviewPulse handle that? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Yes, that's exactly who ReviewPulse is built for. You can add as many locations as you need. Each location gets its own individual analytics, and you also get a combined network-wide view that shows how all your branches compare against each other.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Who receives the weekly report? Can we choose? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Completely up to you. Add any number of email addresses — CEOs, regional managers, operations directors, branch managers, marketing leads. Everyone gets the same clean report every Monday morning. No login required on their end to stay in the loop.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Can we control how the AI replies sound? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Yes. You set your brand tone, add your business name, specify phrases to always use or never use. The AI drafts within those guidelines. You can keep manual approval on, or switch Auto-Reply on and let ReviewPulse handle every response automatically across all locations.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Can we access our full review history from previous years? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Yes. When you connect a location, ReviewPulse imports your full review history going as far back as Google has it. You can filter by any time period and compare across years to see how each branch's reputation has evolved over time.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Is there a long-term contract? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">No contracts, no minimum commitment. ReviewPulse runs on a simple monthly subscription. You can cancel anytime — if you do, you keep access until the end of your billing cycle. We'd rather you stay because it's working, not because you're locked in.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Is our data secure? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Yes. ReviewPulse only reads your publicly visible Google reviews — the same information anyone can see on Google Maps. We do not access any private customer data, payment information, or internal business systems. Your data is never shared with third parties.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<section class="footer-cta" id="trial">
+  <h2>Give ReviewPulse a try<br>for <em>your business.</em></h2>
+  <p>Connect your locations, see your full review history analysed, and get your first weekly report — completely free to start. No contracts, no commitment.</p>
+
+  <!-- ── LEAD FORM ── -->
+  <div class="lead-form-wrap" id="leadFormWrap">
+    <div class="lead-form-inner" id="leadFormInner">
+      <div class="lead-field-row">
+        <div class="lead-field">
+          <label class="lead-label" for="leadName">Your name</label>
+          <input class="lead-input" id="leadName" type="text" placeholder="Sarah Al Mansoori" autocomplete="name">
+        </div>
+        <div class="lead-field">
+          <label class="lead-label" for="leadBiz">Business name</label>
+          <input class="lead-input" id="leadBiz" type="text" placeholder="Al Mansoori Group" autocomplete="organization">
+        </div>
+      </div>
+      <div class="lead-field">
+        <label class="lead-label" for="leadEmail">Email address <span class="lead-req">*</span></label>
+        <input class="lead-input" id="leadEmail" type="email" placeholder="sarah@albiz.ae" autocomplete="email" required>
+        <span class="lead-error" id="leadEmailErr">Please enter a valid email address.</span>
+      </div>
+
+      <button class="footer-btn lead-submit-btn" id="leadSubmitBtn" onclick="submitLead()">
+        <span id="leadBtnText">Try it free for your business →</span>
+        <span id="leadBtnSpinner" class="lead-spinner" style="display:none"></span>
+      </button>
+      <div class="footer-note" style="margin-top:16px">Free trial · Monthly subscription · No contracts · Cancel anytime</div>
+    </div>
+
+    <!-- Success state -->
+    <div class="lead-success" id="leadSuccess" style="display:none">
+      <div class="lead-success-icon">✓</div>
+      <div class="lead-success-title">Thanks! We'll be in touch soon.</div>
+      <div class="lead-success-sub">A team member will reach out to <span id="leadSuccessEmail" style="font-weight:700"></span> for your set up.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div style="font-family:var(--sans);font-weight:800;font-size:14px;letter-spacing:-0.02em">ReviewPulse</div>
+</footer>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+const EMAILJS_SERVICE_ID  = 'service_qbv5jxm';
+const EMAILJS_TEMPLATE_ID = 'template_ryg6kee';
+const EMAILJS_PUBLIC_KEY  = 'aqL26KGX58YLaxmt5';
+
+emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+async function submitLead() {
+  const nameEl    = document.getElementById('leadName');
+  const bizEl     = document.getElementById('leadBiz');
+  const emailEl   = document.getElementById('leadEmail');
+  const errEl     = document.getElementById('leadEmailErr');
+  const btnText   = document.getElementById('leadBtnText');
+  const spinner   = document.getElementById('leadBtnSpinner');
+  const btn       = document.getElementById('leadSubmitBtn');
+
+  // Validate email
+  const emailVal = emailEl.value.trim();
+  const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
+  emailEl.classList.toggle('invalid', !validEmail);
+  errEl.classList.toggle('show', !validEmail);
+  if (!validEmail) { emailEl.focus(); return; }
+
+  // Loading state
+  btn.disabled = true;
+  btnText.style.display = 'none';
+  spinner.style.display = 'inline-block';
+
+  const params = {
+    from_name:  nameEl.value.trim() || 'Not provided',
+    from_email: emailVal,
+    business:   bizEl.value.trim()  || 'Not provided',
+    reply_to:   emailVal,
+  };
+
+  try {
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+    // Show success
+    document.getElementById('leadFormInner').style.display = 'none';
+    const successEl = document.getElementById('leadSuccess');
+    successEl.style.display = 'block';
+    document.getElementById('leadSuccessEmail').textContent = emailVal;
+  } catch (err) {
+    console.error('EmailJS error:', err);
+    btn.disabled = false;
+    btnText.style.display = 'inline';
+    spinner.style.display = 'none';
+    alert('Something went wrong. Please try again or reach out directly on LinkedIn.');
+  }
+}
+
+/* ── CINEMA PANEL JS ── */
+(function() {
+  var DURATION = 3000;
+  var AI_TEXT = "Dear Reem, thank you for taking the time to share your experience. We sincerely apologise for the wait and the lack of attention from our team — this is not the standard we hold ourselves to at our Ajman branch. We've raised this directly with the branch manager and are addressing it immediately. We'd love the opportunity to make this right.";
+  var TAGS = ['Notification arrives','Monday morning digest','1-star alert fires instantly','Weekly email report','AI drafts the reply'];
+  var cur = 0, autoTimer = null, postedBtn = false, vibeInterval = null;
+  var scenes = ['cs1','cs2','cs3','cs4','cs5'].map(function(id){return document.getElementById(id);});
+  var dotsEl = document.querySelectorAll('.cp-dot');
+
+  function cpTriggerVibe() {
+    var phone = document.getElementById('cpPhoneMain');
+    var glow = document.getElementById('cpPhoneGlow');
+    var vr1 = document.getElementById('cpVr1');
+    var vr2 = document.getElementById('cpVr2');
+    var vr3 = document.getElementById('cpVr3');
+    if(!phone) return;
+    phone.classList.remove('vibrating'); void phone.offsetWidth; phone.classList.add('vibrating');
+    glow.classList.add('lit'); setTimeout(function(){glow.classList.remove('lit');},600);
+    [vr1,vr2,vr3].forEach(function(v){v.classList.remove('pulse'); void v.offsetWidth; v.classList.add('pulse');});
+  }
+
+  function cpOnEnter(n) {
+    if (n===0) {
+      var notif = document.getElementById('cpOutlookNotif');
+      notif.classList.remove('show');
+      if(vibeInterval) clearInterval(vibeInterval);
+      setTimeout(function(){ cpTriggerVibe(); setTimeout(function(){notif.classList.add('show');},280); },500);
+      vibeInterval = setInterval(cpTriggerVibe, 2200);
+    } else {
+      if(vibeInterval){clearInterval(vibeInterval);vibeInterval=null;}
+    }
+    if (n===3) {
+      var bars = document.querySelectorAll('#cs4 .cp-cbar');
+      bars.forEach(function(b){b.style.height='0px';});
+      setTimeout(function(){ bars.forEach(function(b){ b.style.height=Math.round(parseInt(b.dataset.h)*54/100)+'px'; }); },200);
+    }
+    if (n===4) {
+      var el = document.getElementById('cpAiText');
+      el.innerHTML = '<span class="cp-cursor"></span>';
+      postedBtn = false;
+      var postBtn = document.getElementById('cpPostBtn');
+      postBtn.textContent = 'Post Reply →';
+      postBtn.classList.remove('done');
+      var i = 0;
+      var t = setInterval(function(){
+        if(i>=AI_TEXT.length){clearInterval(t);return;}
+        el.innerHTML = AI_TEXT.slice(0,++i)+'<span class="cp-cursor"></span>';
+      },18);
+    }
+    document.getElementById('cpLabel').textContent = TAGS[n];
+  }
+
+  window.cpGoTo = function(n) {
+    clearTimeout(autoTimer);
+    scenes[cur].classList.remove('active'); dotsEl[cur].classList.remove('active');
+    cur = n;
+    scenes[cur].classList.add('active'); dotsEl[cur].classList.add('active');
+    cpOnEnter(n);
+    autoTimer = setTimeout(function(){window.cpGoTo((cur+1)%5);}, DURATION);
+  };
+
+  document.getElementById('cpPostBtn').addEventListener('click', function(){
+    if(postedBtn) return;
+    postedBtn = true;
+    var btn = document.getElementById('cpPostBtn');
+    btn.textContent = '✓ Posted'; btn.classList.add('done');
+    clearTimeout(autoTimer);
+    autoTimer = setTimeout(function(){window.cpGoTo(0);}, 2200);
+  });
+
+  var draftBtn = document.querySelector('#cs3 .cp-abtn-primary');
+  if(draftBtn) draftBtn.addEventListener('click', function(){window.cpGoTo(4);});
+
+  window.cpGoTo(0);
+})();
+
+/* ── FAQ + BAR ANIMATIONS ── */
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+const bars = document.querySelectorAll('[data-h]');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const h = e.target.getAttribute('data-h');
+      e.target.style.height = h + '%';
+    }
+  });
+}, { threshold: 0.2 });
+bars.forEach(b => { b.style.height = '0'; b.style.transition = 'height 0.8s ease'; observer.observe(b); });
+</script>
+</body>
+</html>
